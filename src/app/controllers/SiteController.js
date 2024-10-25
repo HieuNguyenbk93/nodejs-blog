@@ -7,8 +7,13 @@ class SiteController {
         try {
             const getData = async function () {
                 const data = await Course.find({});
-                console.log(data);
-                res.json(data);
+                // console.log(data);
+                // res.json(data);
+                const coursesData = data.map(course => course.toObject());
+                res.render('home', {
+                    title: 'TEST TITLE',
+                    courses: coursesData
+                });
             }
             getData();
         }

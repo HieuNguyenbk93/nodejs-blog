@@ -26,7 +26,7 @@ app.engine('hbs', handlebars.engine({
     extname: ".hbs"
 }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resource\\views'));
+app.set('views', path.join(__dirname, 'resource', 'views'));
 // console.log(path.join("PATH: ",__dirname, 'resource\\views'));
 
 route(app);
