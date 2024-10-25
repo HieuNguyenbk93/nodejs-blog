@@ -7,11 +7,11 @@ class SiteController {
         try {
             const getData = async function () {
                 const data = await Course.find({});
-                // console.log(data);
+                console.log(data);
                 // res.json(data);
                 const coursesData = data.map(course => course.toObject());
                 res.render('home', {
-                    title: 'TEST TITLE',
+                    title: 'Danh sách khóa học',
                     courses: coursesData
                 });
             }
@@ -20,14 +20,18 @@ class SiteController {
         catch (err) {
             res.status(400).json({error: 'ERROR!!!'});
         }
-        
-        // Course.find({}, function (err, courses) {
-        //     if (!err) {
-        //         res.json(courses)
-        //     } else
-        //     res.status(400).json({error: 'ERROR!!!'});
-        // });
-        // res.render('home');
+    }
+
+    course(req, res) {
+        const slugParam = req.params.slug;
+        const getData = async function () {
+            const data = await Course.findOne({slug: slugParam});
+            console.log(data);
+            res.render('course', {
+                course: data.toObject(),
+            });
+        }
+        getData();
     }
 
     // [GET] /search
